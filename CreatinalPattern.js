@@ -1,33 +1,33 @@
 //Factory Method: provide an interface to create objects, but lets the subclasses or factory method decide which speciffic class(or objects) to instantiate.
 
-// class Admin{
-//     constructor(name){
-//         this.name = name;
-//         this.role = "admin";
-//     }
-// }
+class Admin{
+    constructor(name){
+        this.name = name;
+        this.role = "admin";
+    }
+}
 
-// class Customer {
-//     constructor(name){
-//         this.name = name; 
-//         this.role = "customer";
-//     }
-// }
+class Customer {
+    constructor(name){
+        this.name = name; 
+        this.role = "customer";
+    }
+}
 
-// class UserFactory{
-//     static createUser(name,role){
-//         if(role == "amin"){
-//             return new Admin(name)
-//         }else if(role == "customer"){
-//             return new Customer(name)
-//         }else{
-//             throw new Error("Invalid role")
-//         }
-//     }
-// }
+class UserFactory{
+    static createUser(name,role){
+        if(role == "amin"){
+            return new Admin(name)
+        }else if(role == "customer"){
+            return new Customer(name)
+        }else{
+            throw new Error("Invalid role")
+        }
+    }
+}
 
-// const u1 = UserFactory.createUser("Gautam", "amin")
-// const u2 = UserFactory.createUser("sumit", "customer")
+const u1 = UserFactory.createUser("Gautam", "amin")
+const u2 = UserFactory.createUser("sumit", "customer")
 
 // console.log(u1);
 // console.log(u2);
@@ -89,7 +89,32 @@ function getUiFactory(osType){
 }
 
 
-let m1 = getUiFactory("mac")
-m1.createButton().render()
-m1.createCheckBox().render()
+// let m1 = getUiFactory("mac")
+// m1.createButton().render()
+// m1.createCheckBox().render()
 
+
+
+//PROTOTYPE PATTERN: allow to create new objects by cloning existing ones(prototypes), instead of creating them from scratch 
+
+const carProtype = {  // acts a blue print 
+    drive(){
+        console.log(`${this.brand} ${this.model} is driving ...`)
+    },
+    info(){
+        console.log(`Car : ${this.brand} ${this.model}, color: ${this.model}`)
+    }
+}
+
+const car1 = Object.create(carProtype)
+car1.brand = "Tesla"
+car1.model = "Model 3"
+car1.color = "Red"
+
+const car2 = Object.create(carProtype)
+car2.brand = "BMW"
+car2.model = "XS"
+car2.color = "Grey"
+
+car1.drive()
+car2.info()
